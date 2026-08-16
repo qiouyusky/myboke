@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日常区 · 黎的帅照</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { background: #f3efe8; color: #1f1b16; padding: 1.5rem 1.2rem 3rem; max-width: 1100px; margin: 0 auto; }
+        .header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; margin-bottom: 2.2rem; border-bottom: 2px solid #d6cdbc; padding-bottom: 0.7rem; }
+        .logo { font-size: 1.9rem; font-weight: 700; color: #2b251e; background: #e5ddcf; padding: 0.2rem 1.4rem 0.2rem 0.8rem; border-radius: 40px 8px 8px 40px; display: inline-flex; align-items: center; gap: 8px; }
+        .logo i { color: #b45f3b; font-size: 1.6rem; }
+        .nav { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; font-weight: 500; }
+        .nav a { text-decoration: none; color: #3d352a; padding: 0.3rem 0.1rem; font-size: 1.1rem; border-bottom: 2px solid transparent; transition: 0.2s; display: inline-flex; align-items: center; gap: 5px; }
+        .nav a i { font-size: 0.9rem; color: #8a7a64; }
+        .nav a:hover, .nav a.active { border-bottom-color: #b45f3b; color: #1a150f; }
+        .nav a.active { font-weight: 600; }
+        .zone-header { display: flex; align-items: baseline; gap: 14px; margin: 1.8rem 0 1.2rem 0; border-left: 5px solid #b45f3b; padding-left: 0.9rem; }
+        .zone-header h2 { font-size: 1.7rem; font-weight: 600; color: #2b251e; }
+        .zone-header span { background: #d6cdbc; padding: 0 1rem; border-radius: 30px; font-size: 0.75rem; font-weight: 500; line-height: 1.9; }
+        .card-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+        .card { background: #ffffffef; border-radius: 20px 8px 20px 8px; box-shadow: 0 6px 18px -10px rgba(40, 30, 10, 0.10); overflow: hidden; transition: 0.2s; border: 1px solid #ece4d7; display: flex; flex-direction: row; align-items: stretch; cursor: pointer; text-decoration: none; color: inherit; min-height: 140px; }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 14px 28px -12px rgba(60, 40, 20, 0.15); }
+        .card-text { flex: 1 1 60%; padding: 1.2rem 1.2rem 1rem 1.4rem; display: flex; flex-direction: column; justify-content: center; }
+        .card-text .section-tag { display: inline-block; font-size: 0.7rem; background: #d6cebf; padding: 0.1rem 0.8rem; border-radius: 30px; font-weight: 600; color: #2f2a22; margin-bottom: 0.3rem; align-self: flex-start; }
+        .card-title { font-size: 1.25rem; font-weight: 650; margin-bottom: 0.2rem; color: #1f1b16; }
+        .card-title i { color: #b45f3b; margin-right: 5px; }
+        .card-desc { font-size: 0.92rem; line-height: 1.5; color: #4d4438; opacity: 0.85; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .card-meta { margin-top: 0.5rem; font-size: 0.7rem; color: #8a7a64; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+        .card-meta i { margin-right: 3px; }
+        .tag-badge { background: #ede7dc; padding: 0.1rem 0.6rem; border-radius: 30px; font-size: 0.65rem; font-weight: 500; color: #4f4030; }
+        .card-image { flex: 0 0 38%; max-width: 38%; background: #d8cfbd; overflow: hidden; display: flex; align-items: center; justify-content: center; background-color: #cec3ae; min-height: 130px; }
+        .card-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: 0.2s; }
+        .card-image img:hover { transform: scale(1.02); }
+        @media (max-width: 600px) {
+            .card { flex-direction: column; min-height: auto; }
+            .card-text { order: 2; padding: 1rem 1rem 0.8rem 1.2rem; }
+            .card-image { flex: 0 0 auto; max-width: 100%; width: 100%; min-height: 150px; max-height: 200px; order: 1; border-radius: 12px 12px 0 0; }
+            .card-image img { height: 100%; width: 100%; object-fit: cover; }
+        }
+        .footer-note { margin-top: 3.8rem; font-size: 0.8rem; text-align: center; color: #9c8c78; border-top: 1px solid #dad2c4; padding-top: 1.8rem; }
+        .footer-note i { color: #b45f3b; }
+        .add-hint { background: #e8e0d2; border-radius: 40px; padding: 0.4rem 1.2rem; display: inline-block; font-size: 0.8rem; color: #3d352a; margin: 1rem 0 0.2rem; border: 1px dashed #b5a48a; }
+        .add-hint i { margin-right: 6px; color: #b45f3b; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 黎的帅照</div>
+        <nav class="nav">
+            <a href="index.html"><i class="fas fa-star"></i> 帅照区</a>
+            <a href="fun.html"><i class="fas fa-gamepad"></i> 娱乐区</a>
+            <a href="day.html" class="active"><i class="fas fa-coffee"></i> 日常区</a>
+            <a href="teach.html"><i class="fas fa-code"></i> 教程区</a>
+        </nav>
+    </header>
+    <main>
+        <div class="zone-header">
+            <h2><i class="fas fa-coffee" style="color:#b45f3b; margin-right:6px;"></i>日常区</h2>
+            <span>光遇 · 拾光</span>
+        </div>
+        <div class="card-grid">
+            <a href="articles/day/morning/index.html" class="card">
+                <div class="card-text">
+                    <div class="section-tag"><i class="fas fa-coffee"></i> 日常</div>
+                    <div class="card-title"><i class="fas fa-sun"></i> 晨岛跑图</div>
+                    <div class="card-desc">每天清晨的晨岛跑图，看着太阳升起，收集烛火已成为习惯。</div>
+                    <div class="card-meta"><i class="far fa-calendar-alt"></i> 2025-07-10 <span class="tag-badge"><i class="far fa-heart"></i> 52</span></div>
+                </div>
+                <div class="card-image"><img src="https://picsum.photos/seed/morning/600/350" alt="晨岛" loading="lazy"></div>
+            </a>
+        </div>
+        <div class="add-hint"><i class="fas fa-plus-circle"></i> 添加文章：在 articles/day/ 下新建文件夹，复制文章模板即可</div>
+    </main>
+    <footer class="footer-note">
+        <i class="fas fa-feather-alt"></i> 黎的帅照 · 光遇旅记 <i class="fas fa-heart" style="color:#b45f3b; margin:0 5px;"></i> 托管于 Cloudflare Pages
+    </footer>
+</body>
+</html>
