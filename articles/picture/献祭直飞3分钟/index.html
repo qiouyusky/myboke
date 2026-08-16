@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>献祭直飞· 3分钟 · 黎的帅照</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body {
+            background: #f3efe8;
+            color: #1f1b16;
+            padding: 2rem 1.2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #d6cdbc;
+            padding-bottom: 0.7rem;
+            position: relative;
+        }
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #2b251e;
+            background: #e5ddcf;
+            padding: 0.2rem 1.4rem 0.2rem 0.8rem;
+            border-radius: 40px 8px 8px 40px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo i { color: #b45f3b; font-size: 1.6rem; }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #3d352a;
+            cursor: pointer;
+            padding: 0.2rem 0.5rem;
+        }
+        .menu-toggle:hover { color: #b45f3b; }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1.4rem;
+            font-weight: 500;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #3d352a;
+            padding: 0.3rem 0.1rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .nav a i { font-size: 0.9rem; color: #8a7a64; }
+        .nav a:hover, .nav a.active { border-bottom-color: #b45f3b; color: #1a150f; }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            z-index: 998;
+        }
+        .overlay.show { display: block; }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav {
+                position: fixed;
+                top: 0;
+                left: -280px;
+                width: 260px;
+                height: 100vh;
+                background: #f3efe8;
+                flex-direction: column;
+                padding: 2rem 1.5rem;
+                gap: 0.8rem;
+                border-right: 2px solid #d6cdbc;
+                transition: left 0.3s ease;
+                z-index: 999;
+                box-shadow: 4px 0 20px rgba(0,0,0,0.08);
+                overflow-y: auto;
+            }
+            .nav.open { left: 0; }
+            .nav a {
+                font-size: 1.2rem;
+                padding: 0.6rem 0.5rem;
+                border-bottom: 2px solid transparent;
+                width: 100%;
+            }
+            .nav a i { font-size: 1.1rem; width: 1.8rem; }
+        }
+
+        .detail-container {
+            background: #fffcf7;
+            padding: 2rem 2rem 3rem;
+            border-radius: 36px 12px 36px 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+        }
+        .detail-title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: #1f1b16;
+        }
+        .detail-meta {
+            color: #7a6b58;
+            font-size: 0.95rem;
+            margin-bottom: 1.8rem;
+            border-bottom: 1px solid #e6ddd0;
+            padding-bottom: 0.8rem;
+            display: flex;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+        }
+        .detail-content {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #2c251e;
+        }
+        .detail-content p { margin: 1.2rem 0; }
+        .detail-content img, .detail-content video {
+            max-width: 100%;
+            border-radius: 20px;
+            margin: 1.4rem 0;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            display: block;
+        }
+        .detail-content video {
+            width: 100%;
+            background: #1a1a1a;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+        .detail-content .caption {
+            font-size: 0.9rem;
+            color: #7a6b58;
+            text-align: center;
+            margin-top: -0.8rem;
+            margin-bottom: 1.6rem;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 2.5rem;
+            color: #b45f3b;
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid #d6cdbc;
+            padding: 0.4rem 1.8rem;
+            border-radius: 40px;
+            transition: 0.2s;
+        }
+        .back-link:hover {
+            background: #b45f3b;
+            color: #fff;
+            border-color: #b45f3b;
+        }
+        .footer-note {
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            text-align: center;
+            color: #9c8c78;
+            border-top: 1px solid #dad2c4;
+            padding-top: 1.8rem;
+        }
+        .footer-note i { color: #b45f3b; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 黎的帅照</div>
+        <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+        <nav class="nav" id="navMenu">
+            <a href="../../../index.html"><i class="fas fa-star"></i> 帅照区</a>
+            <a href="../../../fun.html"><i class="fas fa-gamepad"></i> 娱乐区</a>
+            <a href="../../../day.html"><i class="fas fa-coffee"></i> 日常区</a>
+            <a href="../../../teach.html"><i class="fas fa-code"></i> 教程区</a>
+        </nav>
+        <div class="overlay" id="overlay"></div>
+    </header>
+
+    <div class="detail-container">
+        <h1 class="detail-title"><i class="fas fa-mountain" style="color:#b45f3b;"></i> 献祭直飞 · 3分钟 · 黎的帅照</h1>
+        <div class="detail-meta">
+            <span><i class="far fa-calendar-alt"></i> 2025-08-16</span>
+            <span><i class="far fa-heart"></i>记录日常</span>
+            <span><i class="fas fa-tag"></i> 帅照 · 直飞</span>
+        </div>
+
+        <div class="detail-content">
+            <p><strong>成功直飞献祭！</strong> 每一次飞过那片绵延的云海，都像是一次心灵的远行。</p>
+
+            <p>站在最高处的石台上，风从耳边呼啸而过，斗篷在霞光中猎猎作响。远处，红石的虚影若隐若现，仿佛在诉说着久远的故事。</p>
+
+            <video controls poster="images/cover.jpg">
+                <source src="videos/直飞炫技.mp4" type="video/mp4">
+                您的浏览器不支持视频播放。
+            </video>
+            <div class="caption">🎬 在伊甸的飞行记录</div>
+        </div>
+
+        <a href="../../index.html" class="back-link"><i class="fas fa-arrow-left"></i> 返回帅照区</a>
+    </div>
+
+    <footer class="footer-note">
+        <i class="fas fa-feather-alt"></i> 黎的帅照 · 光遇旅记 <i class="fas fa-heart" style="color:#b45f3b; margin:0 5px;"></i> 托管于 Cloudflare Pages
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('menuToggle');
+        const nav = document.getElementById('navMenu');
+        const overlay = document.getElementById('overlay');
+        function toggleMenu() { nav.classList.toggle('open'); overlay.classList.toggle('show'); }
+        toggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+        nav.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { nav.classList.remove('open'); overlay.classList.remove('show'); }); });
+    </script>
+</body>
+</html>
